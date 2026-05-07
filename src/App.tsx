@@ -1,7 +1,6 @@
 import { Nav } from './components/layout/Nav'
 import { Hero } from './components/sections/Hero'
 import { SpecsGrid } from './components/sections/SpecsGrid'
-import { AccordionShowcase } from './components/sections/AccordionShowcase'
 import { HowItWorks } from './components/sections/HowItWorks'
 import { Problem } from './components/sections/Problem'
 import { Solution } from './components/sections/Solution'
@@ -19,7 +18,6 @@ export default function App() {
       <main>
         <Hero />
         <SpecsGrid />
-        <AccordionShowcase />
         <HowItWorks />
         <Problem />
         <Solution />

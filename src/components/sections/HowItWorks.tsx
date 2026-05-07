@@ -20,7 +20,7 @@ const steps = [
     icon: ShieldCheck,
     number: '03',
     title: 'Protect',
-    description: 'The coating seals microscopic cracks, bonds to the surface, and creates a waterproof barrier that extends roof life by 15+ years.',
+    description: 'The coating seals microscopic cracks, bonds to the surface, and helps protect against UV degradation and environmental wear — extending roof life by 15+ years.',
   },
 ]
 

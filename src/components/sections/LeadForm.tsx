@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Zap, Clock } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -12,17 +12,17 @@ import { Container } from '../layout/Container'
 import { Section } from '../layout/Section'
 
 const propertyTypes = [
-  { value: '', label: 'Select property type' },
-  { value: 'residential', label: 'Residential' },
-  { value: 'commercial', label: 'Commercial' },
-  { value: 'industrial', label: 'Industrial' },
-  { value: 'other', label: 'Other' },
+  { value: '', label: 'What type of property?' },
+  { value: 'residential', label: '🏠 Residential' },
+  { value: 'commercial', label: '🏢 Commercial' },
+  { value: 'industrial', label: '🏭 Industrial' },
+  { value: 'other', label: '📋 Other' },
 ]
 
 const schema = z.object({
-  fullName: z.string().min(2, 'Name must be at least 2 characters'),
+  fullName: z.string().min(2, 'Please enter your name'),
   email: z.string().email('Please enter a valid email'),
-  phone: z.string().optional(),
+  phone: z.string().min(10, 'Please enter a valid phone number'),
   propertyType: z.string().min(1, 'Please select a property type'),
   sqFt: z.string().optional(),
   notes: z.string().optional(),
@@ -42,24 +42,33 @@ export function LeadForm() {
   })
 
   const onSubmit = async (data: FormData) => {
-    // Simulate submission - in production this would POST to an endpoint
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1200))
     console.log('Form submitted:', data)
     setSubmitted(true)
   }
 
   if (submitted) {
     return (
-      <Section id="lead-form" className="bg-secondary-bg/50">
+      <Section id="lead-form" className="bg-gradient-to-b from-primary-bg to-secondary-bg/50">
         <Container>
-          <div className="max-w-xl mx-auto text-center py-12">
-            <div className="w-16 h-16 mx-auto rounded-full bg-success/10 flex items-center justify-center mb-6">
-              <CheckCircle2 size={32} className="text-success" />
+          <div className="max-w-xl mx-auto text-center py-16">
+            <div className="w-20 h-20 mx-auto rounded-full bg-success/10 flex items-center justify-center mb-8 border border-success/20">
+              <CheckCircle2 size={40} className="text-success" />
             </div>
-            <h3 className="text-2xl font-bold text-text-primary mb-2">Quote Request Received</h3>
-            <p className="text-text-secondary">
-              Thanks for your interest in Roof Protector. Our team will reach out within 1 business day to discuss your project.
+            <h3 className="text-3xl font-extrabold text-text-primary mb-3">
+              You're in the queue.
+            </h3>
+            <p className="text-text-secondary text-lg mb-6">
+              We'll reach out within 2 hours during business hours. Check your email — confirmation sent to <strong className="text-text-primary">{data?.email || 'you'}</strong>.
             </p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-text-secondary">
+              <span className="flex items-center gap-2">
+                <Zap size={14} className="text-accent" /> Free roof assessment
+              </span>
+              <span className="flex items-center gap-2">
+                <Clock size={14} className="text-accent" /> 2-hour response time
+              </span>
+            </div>
           </div>
         </Container>
       </Section>
@@ -67,37 +76,47 @@ export function LeadForm() {
   }
 
   return (
-    <Section id="lead-form" className="bg-secondary-bg/50">
+    <Section id="lead-form" className="bg-gradient-to-b from-primary-bg to-secondary-bg/50">
       <Container>
         <div className="max-w-xl mx-auto">
           <SectionHeader
-            eyebrow="Get a Quote"
-            headline="Request a Roof Assessment"
-            subtext="Fill out the form below and we'll get back to you within 1 business day."
+            eyebrow="Free Roof Assessment"
+            headline="Find Out If Your Roof Is a Candidate"
+            subtext="No cost, no obligation. Tell us about your property and we'll tell you exactly what's possible."
             centered
           />
 
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-12 space-y-6">
-            <Input
-              label="Full Name"
-              placeholder="John Smith"
-              error={errors.fullName?.message}
-              {...register('fullName')}
-            />
+          {/* Urgency / trust signals */}
+          <div className="flex flex-wrap justify-center gap-4 mt-6 mb-10">
+            <div className="flex items-center gap-2 text-sm text-text-secondary">
+              <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+              Accepting new projects for Summer 2026
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input
+                label="Your Name"
+                placeholder="Mike Johnson"
+                error={errors.fullName?.message}
+                {...register('fullName')}
+              />
+              <Input
+                label="Phone"
+                type="tel"
+                placeholder="(801) 555-1234"
+                error={errors.phone?.message}
+                {...register('phone')}
+              />
+            </div>
 
             <Input
               label="Email"
               type="email"
-              placeholder="john@example.com"
+              placeholder="mike@company.com"
               error={errors.email?.message}
               {...register('email')}
-            />
-
-            <Input
-              label="Phone (Optional)"
-              type="tel"
-              placeholder="(555) 123-4567"
-              {...register('phone')}
             />
 
             <Select
@@ -108,23 +127,44 @@ export function LeadForm() {
             />
 
             <Input
-              label="Estimated Sq Ft (Optional)"
+              label="Approximate Roof Size (sq ft)"
               type="number"
-              placeholder="2000"
+              placeholder="e.g. 2500 — we'll verify in the call"
               {...register('sqFt')}
             />
 
             <Textarea
-              label="Notes (Optional)"
-              placeholder="Tell us about your roof: age, condition, any specific concerns..."
-              rows={4}
+              label="Anything else we should know? (optional)"
+              placeholder="Roof age, known leaks, previous coatings, access concerns..."
+              rows={3}
               {...register('notes')}
             />
 
-            <Button type="submit" loading={isSubmitting} className="w-full text-base">
-              {isSubmitting ? 'Submitting...' : 'Request Quote'}
-            </Button>
+            <div className="pt-2">
+              <Button type="submit" loading={isSubmitting} className="w-full text-base py-4">
+                {isSubmitting ? 'Submitting...' : 'Get My Free Assessment'}
+              </Button>
+              <p className="text-center text-xs text-text-secondary mt-3">
+                No spam. No obligations. Just a straight answer about your roof.
+              </p>
+            </div>
           </form>
+
+          {/* Trust badges */}
+          <div className="flex flex-wrap justify-center gap-6 mt-10 pt-8 border-t border-border/50">
+            <div className="text-center">
+              <div className="text-accent font-extrabold text-lg">15-Year</div>
+              <div className="text-xs text-text-secondary">Warranty</div>
+            </div>
+            <div className="text-center">
+              <div className="text-accent font-extrabold text-lg">0 g/L</div>
+              <div className="text-xs text-text-secondary">Zero VOC</div>
+            </div>
+            <div className="text-center">
+              <div className="text-accent font-extrabold text-lg">Class A</div>
+              <div className="text-xs text-text-secondary">Fire Rated</div>
+            </div>
+          </div>
         </div>
       </Container>
     </Section>

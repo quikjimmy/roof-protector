@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
-import { ArrowRight, Shield, CheckCircle, Droplets, Wind, Thermometer } from 'lucide-react'
+import { ArrowRight, Shield, CheckCircle, Wind, Thermometer } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Container } from '../layout/Container'
 
@@ -55,18 +55,7 @@ export function Hero() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              Your Roof Is{' '}
-              <span className="relative">
-                <span className="relative z-10 text-accent">Leaking</span>
-                <motion.span
-                  className="absolute -bottom-1 left-0 right-0 h-3 bg-accent/20 rounded"
-                  initial={{ scaleX: 0 }}
-                  animate={isInView ? { scaleX: 1 } : {}}
-                  transition={{ delay: 0.6, duration: 0.5 }}
-                />
-              </span>
-              . You Don&apos;t Need to{' '}
-              <span className="text-text-secondary/60">Replace It.</span>
+              Your Roof Is Showing Its Age. You Don't Need to Replace It.
             </motion.h1>
 
             {/* Subheadline */}
@@ -76,7 +65,7 @@ export function Hero() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              One coat seals leaks, stops aging, and gives you a brand-new roof — at{' '}
+              One coat restores, protects, and extends roof life — at{' '}
               <strong className="text-text-primary">60% less than replacement cost.</strong>{' '}
               Done in a day. Lasts 15 years.
             </motion.p>
@@ -89,9 +78,8 @@ export function Hero() {
               transition={{ delay: 0.4, duration: 0.5 }}
             >
               {[
-                { icon: Droplets, text: 'Stops Leaks' },
-                { icon: Wind, text: 'No More Aging' },
                 { icon: Thermometer, text: 'UV Protection' },
+                { icon: Wind, text: 'Anti-Microbial Protection' },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2 text-sm text-text-secondary">
                   <div className="w-8 h-8 rounded-lg bg-secondary-bg border border-border flex items-center justify-center">

@@ -209,7 +209,11 @@ export function LeadForm() {
           <div className="flex flex-wrap justify-center gap-8 mt-8 pt-8 border-t border-border/50">
             <div className="text-center">
               <div className="text-accent font-extrabold text-xl">15-Year</div>
-              <div className="text-xs text-text-secondary mt-0.5">Warranty</div>
+              <div className="text-xs text-text-secondary mt-0.5">Workmanship Warranty</div>
+            </div>
+            <div className="text-center">
+              <div className="text-accent font-extrabold text-xl">3-Year</div>
+              <div className="text-xs text-text-secondary mt-0.5">Moss & Mildew Warranty</div>
             </div>
             <div className="text-center">
               <div className="text-accent font-extrabold text-xl">0 g/L</div>
@@ -219,10 +223,12 @@ export function LeadForm() {
               <div className="text-accent font-extrabold text-xl">Class A</div>
               <div className="text-xs text-text-secondary mt-0.5">Fire Rated</div>
             </div>
-            <div className="text-center">
-              <div className="text-accent font-extrabold text-xl">200</div>
-              <div className="text-xs text-text-secondary mt-0.5">sq ft/gal coverage</div>
-            </div>
+          </div>
+
+          {/* Legal disclaimer */}
+          <div className="mt-6 p-4 rounded-lg bg-primary-bg/50 border border-border/30 text-xs text-text-secondary space-y-1">
+            <p className="font-semibold text-text-primary mb-2">Important Preparation Requirements</p>
+            <p>Roof must be in sound structural condition prior to application. Any missing shingles, holes, gaps, or active water intrusions must be repaired in accordance with local building codes before coating can begin. Roof Protector is a surface coating — it is not a structural repair product and will not fix active leaks caused by structural damage.</div>
           </div>
 
           {/* Urgency note */}

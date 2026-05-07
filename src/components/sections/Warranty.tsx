@@ -49,7 +49,7 @@ export function Warranty() {
                 The Longest Warranty in Roof Restoration
               </h2>
               <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-                Most roof coatings offer 5 years — if you're lucky. We back Roof Protector with a full 15-year workmanship warranty because we know it performs.
+                Most roof coatings offer 5 years — if you're lucky. We back Roof Protector with a full 15-year workmanship warranty because we know it performs. Additionally, Roof Protector is antimicrobial — we warrant against moss and mildew growth on the coated surface for 3 years.
               </p>
             </div>
 
@@ -59,6 +59,7 @@ export function Warranty() {
                 { icon: RefreshCw, text: 'Transferable to new owners' },
                 { icon: Shield, text: 'Direct support from our team' },
                 { icon: Award, text: 'Prorated after year 5' },
+                { icon: Award, text: '3-year moss & mildew warranty' },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-3 bg-primary-bg/50 rounded-xl px-4 py-3 border border-border/50">
                   <Icon size={18} className="text-success flex-shrink-0" />
@@ -80,6 +81,34 @@ export function Warranty() {
                 <div className="text-text-primary font-extrabold text-lg">0 g/L</div>
                 <div className="text-xs text-text-secondary">Zero VOC</div>
               </div>
+              <div className="px-5 py-3 rounded-xl bg-success/10 border border-success/20">
+                <div className="text-success font-extrabold text-lg">3 Yr</div>
+                <div className="text-xs text-text-secondary">Moss & Mildew</div>
+              </div>
+            </div>
+          </div>
+
+            {/* Warranty Exclusions & Terms */}
+            <div className="mt-8 p-5 rounded-xl bg-primary-bg/50 border border-border/50">
+              <h4 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-3">Warranty Terms & Exclusions</h4>
+              <ul className="space-y-2 text-xs text-text-secondary">
+                <li className="flex items-start gap-2">
+                  <span className="text-warning mt-0.5">•</span>
+                  <span>Roof must be in structurally sound condition prior to application. Missing shingles, holes, gaps, or active water intrusions must be repaired in accordance with local building codes prior to coating.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-warning mt-0.5">•</span>
+                  <span>Warranty covers workmanship and material defects under normal use. It does not cover damage from structural failure, severe weather events, acts of God, or physical damage.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-warning mt-0.5">•</span>
+                  <span>The 15-year warranty is prorated after year 5. The 3-year moss and mildew warranty covers only the antimicrobial properties of the coating.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-warning mt-0.5">•</span>
+                  <span>Transferable to new property owners within the warranty period with proper documentation.</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

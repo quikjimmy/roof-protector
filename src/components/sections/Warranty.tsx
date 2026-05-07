@@ -86,7 +86,6 @@ export function Warranty() {
                 <div className="text-xs text-text-secondary">Moss & Mildew</div>
               </div>
             </div>
-          </div>
 
             {/* Warranty Exclusions & Terms */}
             <div className="mt-8 p-5 rounded-xl bg-primary-bg/50 border border-border/50">
@@ -94,15 +93,15 @@ export function Warranty() {
               <ul className="space-y-2 text-xs text-text-secondary">
                 <li className="flex items-start gap-2">
                   <span className="text-warning mt-0.5">•</span>
-                  <span>Roof must be in structurally sound condition prior to application. Missing shingles, holes, gaps, or active water intrusions must be repaired in accordance with local building codes prior to coating.</span>
+                  <span>Roof must be in structurally sound condition prior to application. Missing shingles, holes, gaps, or active water intrusions must be repaired per local building codes prior to coating.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-warning mt-0.5">•</span>
-                  <span>Warranty covers workmanship and material defects under normal use. It does not cover damage from structural failure, severe weather events, acts of God, or physical damage.</span>
+                  <span>Warranty covers workmanship and material defects under normal use. Does not cover structural failure, severe weather, acts of God, or physical damage.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-warning mt-0.5">•</span>
-                  <span>The 15-year warranty is prorated after year 5. The 3-year moss and mildew warranty covers only the antimicrobial properties of the coating.</span>
+                  <span>15-year warranty is prorated after year 5. 3-year moss and mildew warranty covers antimicrobial properties only.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-warning mt-0.5">•</span>

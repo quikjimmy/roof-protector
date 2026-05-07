@@ -228,7 +228,8 @@ export function LeadForm() {
           {/* Legal disclaimer */}
           <div className="mt-6 p-4 rounded-lg bg-primary-bg/50 border border-border/30 text-xs text-text-secondary space-y-1">
             <p className="font-semibold text-text-primary mb-2">Important Preparation Requirements</p>
-            <p>Roof must be in sound structural condition prior to application. Any missing shingles, holes, gaps, or active water intrusions must be repaired in accordance with local building codes before coating can begin. Roof Protector is a surface coating — it is not a structural repair product and will not fix active leaks caused by structural damage.</div>
+            <p>Roof must be in sound structural condition prior to application. Any missing shingles, holes, gaps, or active water intrusions must be repaired in accordance with local building codes before coating can begin. Roof Protector is a surface coating — it is not a structural repair product and will not fix active leaks caused by structural damage.</p>
+          </div>
           </div>
 
           {/* Urgency note */}
@@ -237,7 +238,6 @@ export function LeadForm() {
               <AlertCircle size={14} />
               Summer is peak season — availability is limited. Book early to secure your spot.
             </div>
-          </div>
         </div>
       </Container>
     </Section>

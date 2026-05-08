@@ -1,74 +1,70 @@
-import { Card } from '../ui/Card'
 import { SectionHeader } from '../ui/SectionHeader'
 import { Container } from '../layout/Container'
 import { Section } from '../layout/Section'
-import { Ruler, Shield, Flame, Wind, Droplets, Clock, CheckCircle, Thermometer } from 'lucide-react'
 
 const specs = [
   {
-    label: 'Coverage per Gallon',
+    label: 'Coverage',
     value: '100–200',
-    suffix: 'sq ft',
-    icon: Ruler,
-    color: 'accent',
-    note: 'Varies by surface condition',
+    unit: 'sq ft/gal',
+    note: 'Depending on surface condition',
   },
   {
-    label: 'Warranty',
-    value: '15',
-    suffix: 'years',
-    icon: Shield,
-    color: 'success',
-    note: 'Limited system warranty',
+    label: 'Solids by Volume',
+    value: '85–92%',
+    unit: '',
+    note: 'High solids = more film per coat',
   },
   {
-    label: 'Fire Rating',
-    value: 'Class A',
-    suffix: '',
-    icon: Flame,
-    color: 'accent',
-    note: 'ASTM E84',
-  },
-  {
-    label: 'VOC',
+    label: 'VOC Content',
     value: '<50',
-    suffix: 'g/L',
-    icon: Wind,
-    color: 'success',
-    note: 'Low VOC',
+    unit: 'g/L',
+    note: 'Compliant nationwide. Safe to apply outdoors.',
   },
   {
     label: 'Perm Rating',
     value: '5–15',
-    suffix: 'perms',
-    icon: Droplets,
-    color: 'accent',
-    note: 'Breathable membrane',
+    unit: 'perms',
+    note: 'Vapor permeable — lets the roof breathe',
   },
   {
     label: 'Elongation',
-    value: '150–300',
-    suffix: '%',
-    icon: Clock,
-    color: 'accent',
-    note: 'Flexible & crack-bridging',
+    value: '150–300%',
+    unit: '',
+    note: 'Flexes with thermal expansion. Bridges micro-cracks.',
   },
   {
     label: 'Tensile Strength',
     value: '400–800',
-    suffix: 'psi',
-    icon: CheckCircle,
-    color: 'accent',
-    note: 'ASTM D412',
+    unit: 'psi',
+    note: 'ASTM D412. Holds up under stress.',
+  },
+  {
+    label: 'Fire Rating',
+    value: 'Class A',
+    unit: '',
+    note: 'ASTM E84. Highest fire rating.',
+  },
+  {
+    label: 'Cure Time',
+    value: '24',
+    unit: 'hours',
+    note: 'Full cure. Dry to touch in 1 hour.',
   },
   {
     label: 'Application Temp',
-    value: '>40',
-    suffix: '°F',
-    icon: Thermometer,
-    color: 'accent',
-    note: 'Dry surface, no rain within 2–4 hrs',
+    value: '40°F+',
+    unit: '',
+    note: 'Apply on dry surface. No rain for 2–4 hours.',
   },
+]
+
+const astmSpecs = [
+  { test: 'ASTM E84', result: 'Class A Fire Rating' },
+  { test: 'ASTM D7234', result: 'Adhesion >450 psi' },
+  { test: 'ASTM D4060', result: 'Taber Abrasion' },
+  { test: 'ASTM D2240', result: 'Shore D Hardness' },
+  { test: 'ASTM D412', result: '150–300% Elongation' },
 ]
 
 export function SpecsGrid() {
@@ -76,110 +72,61 @@ export function SpecsGrid() {
     <Section id="specs-grid" className="bg-secondary-bg/30">
       <Container>
         <SectionHeader
-          eyebrow="Technical Specifications"
-          headline="Real Numbers. From the TDS."
-          subtext="Every specification below comes directly from the Roof Protector Technical Data Sheet (TDS v2). No marketing rounding, no vague claims."
+          eyebrow="What It Does"
+          headline="Every Number. No Vague Claims."
+          subtext="Here's exactly what Roof Protector does — backed by test data, not marketing language."
           centered
         />
 
-        {/* Specs grid — 2 rows of 4 */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {specs.map((spec) => (
-            <Card key={spec.label} hover className="text-center relative overflow-hidden">
-              <div className="w-10 h-10 mx-auto rounded-lg bg-accent/10 flex items-center justify-center mb-3">
-                <spec.icon size={20} className="text-accent" />
-              </div>
-              <span className="text-xs uppercase tracking-[0.12em] text-text-secondary font-medium block">
+            <div
+              key={spec.label}
+              className="bg-secondary-bg border border-border rounded-xl p-6 hover:border-accent/40 transition-colors duration-150"
+            >
+              <div className="text-[10px] uppercase tracking-[0.15em] text-text-secondary font-semibold mb-2">
                 {spec.label}
-              </span>
-              <div className="mt-2 flex items-baseline justify-center gap-1">
-                <span className="text-3xl md:text-4xl font-mono font-extrabold text-text-primary">
-                  {spec.value}
-                </span>
-                {spec.suffix && (
-                  <span className="text-sm text-text-secondary">{spec.suffix}</span>
+              </div>
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="text-3xl font-mono font-black text-text-primary">{spec.value}</span>
+                {spec.unit && (
+                  <span className="text-sm font-mono text-text-secondary">{spec.unit}</span>
                 )}
               </div>
-              {spec.note && (
-                <span className="inline-block mt-2 text-[10px] text-text-secondary/60 uppercase tracking-wider">
-                  {spec.note}
-                </span>
-              )}
-            </Card>
+              <p className="text-xs text-text-secondary leading-relaxed">{spec.note}</p>
+            </div>
           ))}
         </div>
 
-        {/* Additional performance specs — table-style */}
-        <div className="mt-10 max-w-3xl mx-auto">
-          <h3 className="text-sm font-bold text-text-primary uppercase tracking-wider text-center mb-6">Additional Performance Data</h3>
-          <div className="bg-secondary-bg border border-border rounded-xl overflow-hidden">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left px-5 py-3 text-xs uppercase tracking-wider text-text-secondary font-semibold">Property</th>
-                  <th className="text-right px-5 py-3 text-xs uppercase tracking-wider text-text-secondary font-semibold">Value</th>
-                  <th className="text-left px-5 py-3 text-xs uppercase tracking-wider text-text-secondary font-semibold">Test Method</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/50">
-                {[
-                  ['Solids by Volume', '85–92%', 'ASTM D2369'],
-                  ['Elongation', '150–300%', 'ASTM D2370'],
-                  ['Tensile Strength', '400–800 psi', 'ASTM D412'],
-                  ['Permeance', '5–15 perms', 'ASTM E96'],
-                  ['Adhesion', '>450 psi', 'ASTM D7234'],
-                  ['Taper Abrasion', 'Pass', 'ASTM D4060'],
-                  ['Shore D Hardness', 'Pass', 'ASTM D2240'],
-                ].map(([prop, val, test]) => (
-                  <tr key={prop} className="hover:bg-primary-bg/30 transition-colors">
-                    <td className="px-5 py-3 text-text-primary font-medium">{prop}</td>
-                    <td className="px-5 py-3 text-accent font-bold text-right font-mono">{val}</td>
-                    <td className="px-5 py-3 text-text-secondary">{test}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* ASTM test reference table */}
+        <div className="mt-8 p-5 rounded-xl bg-primary-bg border border-border">
+          <h4 className="text-xs uppercase tracking-[0.15em] text-accent font-semibold mb-3">Test Standards</h4>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            {astmSpecs.map(({ test, result }) => (
+              <div key={test} className="flex flex-col gap-1">
+                <span className="text-xs font-mono text-accent">{test}</span>
+                <span className="text-xs text-text-secondary">{result}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Two-coat system callout */}
-        <div className="mt-8 flex flex-wrap justify-center gap-6 md:gap-12 text-center">
-          <div>
-            <div className="w-12 h-12 mx-auto rounded-xl bg-accent/10 flex items-center justify-center mb-2">
-              <span className="text-accent font-extrabold text-lg">2</span>
+        {/* Key features */}
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            'UV Resistant',
+            'Vapor Permeable',
+            'Flexible / Crack-Bridging',
+            'Single Component — No Mixing',
+          ].map((feature) => (
+            <div key={feature} className="flex items-center gap-2 px-4 py-3 rounded-lg bg-secondary-bg border border-border">
+              <svg className="w-4 h-4 text-success flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-sm text-text-primary font-medium">{feature}</span>
             </div>
-            <div className="text-sm font-semibold text-text-primary">Two-Coat System</div>
-            <div className="text-xs text-text-secondary mt-0.5">Base + top coat</div>
-          </div>
-          <div className="w-px h-12 bg-border hidden md:block self-center" />
-          <div>
-            <div className="w-12 h-12 mx-auto rounded-xl bg-accent/10 flex items-center justify-center mb-2">
-              <span className="text-accent font-extrabold text-lg">1</span>
-            </div>
-            <div className="text-sm font-semibold text-text-primary">Single Component</div>
-            <div className="text-xs text-text-secondary mt-0.5">No mixing required</div>
-          </div>
-          <div className="w-px h-12 bg-border hidden md:block self-center" />
-          <div>
-            <div className="w-12 h-12 mx-auto rounded-xl bg-accent/10 flex items-center justify-center mb-2">
-              <span className="text-accent font-extrabold text-lg">24h</span>
-            </div>
-            <div className="text-sm font-semibold text-text-primary">Full Cure</div>
-            <div className="text-xs text-text-secondary mt-0.5">Ready in 24 hours</div>
-          </div>
-          <div className="w-px h-12 bg-border hidden md:block self-center" />
-          <div>
-            <div className="w-12 h-12 mx-auto rounded-xl bg-success/10 flex items-center justify-center mb-2">
-              <CheckCircle size={20} className="text-success" />
-            </div>
-            <div className="text-sm font-semibold text-text-primary">UV Resistant</div>
-            <div className="text-xs text-text-secondary mt-0.5">Stable in sunlight</div>
-          </div>
+          ))}
         </div>
-
-        <p className="text-center text-xs text-text-secondary/50 mt-8">
-          All specifications from Technical Data Sheet v2. Tested to ASTM standards.
-        </p>
       </Container>
     </Section>
   )

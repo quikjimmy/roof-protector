@@ -1,13 +1,13 @@
 import { Nav } from './components/layout/Nav'
 import { Hero } from './components/sections/Hero'
-import { SpecsGrid } from './components/sections/SpecsGrid'
-import { HowItWorks } from './components/sections/HowItWorks'
 import { Problem } from './components/sections/Problem'
-import { Solution } from './components/sections/Solution'
-import { Applications } from './components/sections/Applications'
+import { HowItWorks } from './components/sections/HowItWorks'
+import { SpecsGrid } from './components/sections/SpecsGrid'
+import { Exclusions } from './components/sections/Exclusions'
 import { Warranty } from './components/sections/Warranty'
 import { LeadForm } from './components/sections/LeadForm'
-import { AmazonCTA } from './components/sections/AmazonCTA'
+import { InstallerForm } from './components/sections/InstallerForm'
+import { FAQ } from './components/sections/FAQ'
 import { Footer } from './components/sections/Footer'
 import './styles/globals.css'
 
@@ -17,14 +17,14 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <SpecsGrid />
-        <HowItWorks />
         <Problem />
-        <Solution />
-        <Applications />
+        <HowItWorks />
+        <SpecsGrid />
+        <Exclusions />
         <Warranty />
         <LeadForm />
-        <AmazonCTA />
+        <InstallerForm />
+        <FAQ />
       </main>
       <Footer />
     </div>
